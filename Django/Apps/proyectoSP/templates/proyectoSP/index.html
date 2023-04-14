@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+    <meta charset=”UTF-8″ />
+    <title>proyectoSP</title>
+</head>
+<body> 
+    <header>
+        <h1>proyectoSP</h1>
+        <p>Bienvenido <b>{{first_name}} {{last_name}}</b> </p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'alta_alumno' %}">Alta</a></li>
+            <li><a href="{% url 'baja_alumno' %}">Baja</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Alumno ficticio</h2>
+            <article>
+                <p>Nombre: {{student.name}} </p>
+                <p>Apellido: {{student.last_name}} </p>
+                <p>Edad: {{student.age}} </p>
+
+                {% if not student.valid %}
+                    {% filter upper %}
+                        <p style="color: red;">Alerta! este alumno no esta validado</p>
+                    {% endfilter %}
+                {% endif %}
+            </article>
+        </section>   
+        <section>
+            <h2>Listado de Alumnos</h2>
+            {% for alumno in listado_alumnos %}
+                <article>
+                    <p>Nombre: {{alumno.name}} </p>
+                    <p>Apellido: {{alumno.last_name}} </p>
+                </article>
+            {% endfor %}
+        </section>
+    </main>
+    <footer>
+        <p>
+            CaC 2023, derechos reservados
+        </p>
+    </footer>
+</body>
+</html>

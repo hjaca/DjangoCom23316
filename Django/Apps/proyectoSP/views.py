@@ -4,7 +4,57 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return HttpResponse("<h1>Proyecto SP")
+    print(request.method)
+
+    listado_alumnos = [
+        {
+            'name': 'Maria',
+            'last_name': 'Luna',
+            'age': 20,
+            'valid': False,
+        },
+        {
+            'name': 'John',
+            'last_name': 'Star',
+            'age': 30,
+            'valid': False,
+        },
+        {
+            'name': 'Juan',
+            'last_name': 'Sol',
+            'age': 40,
+            'valid': True,
+        },
+    ]
+
+    alumno_ficticio = {
+        'name': 'Cata',
+        'last_name': 'Reca',
+        'age': 24,
+    }
+    
+    context = {
+        'first_name': 'Luis',
+        'last_name': 'Monte',
+        'student': alumno_ficticio, 
+        'listado_alumnos': listado_alumnos,
+    }
+
+    return render(request, 'proyectoSP/index.html', context)
+
+def baja_alumno(request):
+#    return HttpResponse("<h1>Add")
+    return render(request, 'proyectoSP/baja_alumno.html')
+
+def alta_alumno(request):
+#    return HttpResponse("<h1>Del")
+    return render(request, 'proyectoSP/alta_alumno.html')
+
+def modif_alumno(request):
+    return HttpResponse("<h1>Mod")
+
+def show_alumno(request):
+    return HttpResponse("<h1>Show")
 
 def add_user(request):
     return HttpResponse("<h1>Add")
